@@ -1,16 +1,31 @@
+import Transport.Car;
+
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
-        Car ladaGranta = new Car();
-        Car audiA8 = new Car("Audi","A8 50L TDI quattro", 2020,null,"Black", 3.0d);
-        Car bMWZ8 = new Car("BMW", "Z8", 2021, "Germany", "Black", 0);
-        Car kiaSportage = new Car("Kia","Sportage 4", 2018,"South Korea", "Red",2.4d);
-        Car hyundaiAvante = new Car(null, "",2016,"South Korea", "", 0);
+        Car audiA8 = new Car("Audi",
+                "A8 50L TDI quattro",
+                2020,
+                "Germany",
+                "Black",
+                3.0f,
+                "A999BB00",
+                "Automatic",
+                "A",
+                5,
+                true,
+                new Car.Insurance(LocalDate.now().plusMonths(0), 1000.0f, "123456789"),
+                new Car.Key(true, true));
+
+        System.out.println(audiA8);
+        if (!audiA8.getInsurance().isInsuranceValid()) {
+            System.out.println("Страховка просрочена.");
+            if (audiA8.isRegNumValid() == false) {
+                System.out.println("Неправильный формат регистационного номера. Введите номер в формате х000хх000");
+            }
+        }
 
 
-        ladaGranta.infoAboutCar();
-        audiA8.infoAboutCar();
-        bMWZ8.infoAboutCar();
-        kiaSportage.infoAboutCar();
-        hyundaiAvante.infoAboutCar();
     }
 }
