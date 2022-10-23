@@ -30,7 +30,7 @@ public class Car {
                String gearBox,
                String coachworkType,
                int seats,
-               boolean wintertires,
+               boolean winterTires,
                Insurance insurance,
                Key key) {
         this.brand = ValidationUtils.validOrDeafult(brand, "default");
@@ -46,7 +46,7 @@ public class Car {
         setRegisterNumber(registerNumber);
         isRegNumValid();
         setGearBox(gearBox);
-        setSeasonTires();
+        setWinterTires(winterTires);
     }
 
     public void setSeasonTires() {
@@ -54,6 +54,13 @@ public class Car {
         this.winterTires = currentMonth <= 4 || currentMonth >= 11;
     }
 
+    public void setWinterTires(boolean winterTires) {
+        this.winterTires = winterTires;
+    }
+
+    public boolean isWinterTires() {
+        return winterTires;
+    }
 
     public String toString() {
         return "Марка " + brand
@@ -176,28 +183,30 @@ public class Car {
             this.number = ValidationUtils.validOrDeafult(number, "0");
         }
 
-        public boolean isNumberValid(){
+        public boolean isNumberValid() {
             return number.length() == 9;
         }
 
-        public boolean isInsuranceValid(){
+        public boolean isInsuranceValid() {
             return LocalDate.now().isBefore(this.validUntil);
         }
     }
-    public static class  Key{
+
+    public static class Key {
 
         private final boolean remoteEngineStart;
         private final boolean keylessAccess;
 
-        public Key(boolean remoteEngineStart, boolean keylessAccess){
+        public Key(boolean remoteEngineStart, boolean keylessAccess) {
             this.remoteEngineStart = remoteEngineStart;
             this.keylessAccess = keylessAccess;
         }
 
-        public boolean isRemoteEngineStart(){
+        public boolean isRemoteEngineStart() {
             return remoteEngineStart;
         }
-        public boolean isKeylessAccess(){
+
+        public boolean isKeylessAccess() {
             return keylessAccess;
         }
     }
